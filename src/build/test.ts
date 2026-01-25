@@ -13,11 +13,10 @@ export function createTestConfig(importerUrl: string) {
             globals: true,
             environment: 'jsdom',
             include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
-            setupFiles: [path.resolve(root, '../../../sdk/src/test/setup.ts')],
+            setupFiles: ['@ari/plugin-sdk/test/setup'],
             css: false,
             alias: {
                 '@': path.resolve(root, './src'),
-                '@ari/plugin-sdk': path.resolve(root, '../../../sdk/src'),
             },
         },
     });

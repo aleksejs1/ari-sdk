@@ -1,4 +1,4 @@
-import { type UserConfig } from 'vite';
+import { type UserConfig, mergeConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import path from 'path';
@@ -8,12 +8,13 @@ import { visualizer } from 'rollup-plugin-visualizer';
 export function createPluginConfig(
     name: string,
     importerUrl: string,
-    options: { entry?: string } = {}
+    options: { entry?: string } = {},
+    extraConfig: UserConfig = {}
 ): UserConfig {
     const root = path.dirname(fileURLToPath(importerUrl));
     const entry = options.entry || './src/index.tsx';
 
-    return {
+    const baseConfig: UserConfig = {
         root,
         plugins: [
             react(),
@@ -23,14 +24,13 @@ export function createPluginConfig(
                 gzipSize: true,
                 brotliSize: true,
                 filename: 'dist/stats.html'
-            }),
+            }) as any,
         ],
         define: {
             'process.env': {}
         },
         resolve: {
             alias: [
-                { find: '@ari/plugin-sdk', replacement: path.resolve(root, '../../../sdk/src') },
                 { find: '@', replacement: path.resolve(root, './src') },
             ],
         },
@@ -74,13 +74,21 @@ export function createPluginConfig(
             globals: true,
             environment: 'jsdom',
             include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
-            setupFiles: [path.resolve(root, '../../../sdk/src/test/setup.ts')],
+            setupFiles: ['@ari/plugin-sdk/test/setup'],
         },
         server: {
             cors: true,
+            fs: {
+                allow: [
+                    root,
+                    path.resolve(root, '../../../../../')
+                ]
+            }
         },
         preview: {
             cors: true,
         },
     };
+
+    return mergeConfig(baseConfig, extraConfig);
 }
