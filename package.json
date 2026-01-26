@@ -5,11 +5,26 @@
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "exports": {
-        ".": "./dist/index.js",
-        "./build/vite": "./dist/build/vite.js",
-        "./build/test": "./dist/build/test.js",
-        "./test": "./dist/test/index.js",
-        "./test/setup": "./dist/test/setup.js",
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        },
+        "./build/vite": {
+            "types": "./dist/build/vite.d.ts",
+            "default": "./dist/build/vite.js"
+        },
+        "./build/test": {
+            "types": "./dist/build/test.d.ts",
+            "default": "./dist/build/test.js"
+        },
+        "./test": {
+            "types": "./dist/test/index.d.ts",
+            "default": "./dist/test/index.js"
+        },
+        "./test/setup": {
+            "types": "./dist/test/setup.d.ts",
+            "default": "./dist/test/setup.js"
+        },
         "./tailwind.preset": "./tailwind.preset.js"
     },
     "scripts": {
