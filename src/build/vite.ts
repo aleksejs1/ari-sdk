@@ -48,7 +48,7 @@ export function createPluginConfig(
                     'react',
                     'react-dom',
                     'react/jsx-runtime',
-                    '@ari/plugin-sdk',
+                    '@personal-ari/plugin-sdk',
                     'react-router-dom',
                     '@tanstack/react-query',
                     'lucide-react',
@@ -65,7 +65,7 @@ export function createPluginConfig(
                     globals: {
                         react: 'React',
                         'react-dom': 'ReactDOM',
-                        '@ari/plugin-sdk': 'AriSdk',
+                        '@personal-ari/plugin-sdk': 'AriSdk',
                     },
                 },
             },
@@ -74,7 +74,7 @@ export function createPluginConfig(
             globals: true,
             environment: 'jsdom',
             include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
-            setupFiles: ['@ari/plugin-sdk/test/setup'],
+            setupFiles: ['@personal-ari/plugin-sdk/test/setup'],
         },
         server: {
             cors: true,

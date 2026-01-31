@@ -26,8 +26,8 @@ export default defineConfig({
         },
         rollupOptions: {
             external: [
-                'react',
-                'react-dom',
+                /^react($|\/)/,
+                /^react-dom($|\/)/,
                 'react-router-dom',
                 'axios',
                 '@tanstack/react-query',
@@ -44,6 +44,7 @@ export default defineConfig({
                 'url',
                 'vitest',
                 'util',
+                'module',
                 /^node:.*/
             ],
             output: {

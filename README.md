@@ -1,4 +1,4 @@
-# @ari/plugin-sdk
+# @personal-ari/plugin-sdk
 
 ## Local Development
 
@@ -17,7 +17,7 @@ npm link       # Create a global link to the package
 In the plugin directory (e.g., `ari/plugins/GiftPlugin/ui`):
 
 ```bash
-npm link @ari/plugin-sdk
+npm link @personal-ari/plugin-sdk
 ```
 
 ### 3. Workflow
